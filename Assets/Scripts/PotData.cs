@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PotData : MonoBehaviour
 {
-    public int money = 0;
+    public int State = 0;
+    public FlowerData Flower;
     // Start is called before the first frame update
     void Start()
     {
