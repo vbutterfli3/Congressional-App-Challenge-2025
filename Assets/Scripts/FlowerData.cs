@@ -11,6 +11,7 @@ public class FlowerData : MonoBehaviour
     public int Sell;
     public Sprite flower;
     public Sprite seed;
+    public Sprite sprout;
     public Sprite dead;
       
 
@@ -20,6 +21,7 @@ public class FlowerData : MonoBehaviour
         Cost = newFlower.Cost;
         Sell = newFlower.Sell;
         flower = newFlower.flower;
+        sprout = newFlower.sprout;
         seed = newFlower.seed;
         dead = newFlower.dead;
     }

@@ -15,11 +15,13 @@ public class ShopController : MonoBehaviour
 
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Cost;
+    public TextMeshProUGUI PlayerMoney;
     public Image seeds;
     public Image pot;
 
     public int potOneState = 0;
     public bool isWatering = false;
+    public int money;
 
     public void MoveRight()
     {
@@ -65,8 +67,9 @@ public class ShopController : MonoBehaviour
     }
 
     public void PlantAction(PotData data) {
-        if(data.State == 0)
+        if(data.State == 0 && Inventory.Count > 0)
         {
+            data.Water.enabled = true;
             pot.sprite = Inventory[0].seed;
             data.Flower = Inventory[0];  
             Inventory.RemoveAt(0);
@@ -74,11 +77,47 @@ public class ShopController : MonoBehaviour
         }
         if (data.State == 1 && isWatering)
         {
+            data.Water.enabled = false;
             isWatering = false;
-            pot.sprite = data.Flower.flower;
-            data.State = 2;
+            StartCoroutine(WaitAndSprout(data));
+        }
+        if(data.State == 2 && isWatering)
+        {
+            data.Water.enabled = false;
+            isWatering = false;
+            StartCoroutine(WaitAndFlower(data));
+        }
+
+        if (data.State == 3)
+        {
+            data.State = 4;
+        }
+        if(data.State == 4)
+        {
+            money += data.Flower.Sell;
+            PlayerMoney.text = "$"+ money.ToString();
+            data.potanddirt.sprite = data.dirt;
+            pot.sprite = data.blank;
+            data.State = 0;
         }
     }
+
+    IEnumerator WaitAndSprout(PotData data)
+    {
+        yield return new WaitForSeconds(2f); // wait for 10 seconds
+        pot.sprite = data.Flower.sprout;
+        data.State = 2;
+        data.Water.enabled = true;
+    }
+    IEnumerator WaitAndFlower(PotData data)
+    {
+        yield return new WaitForSeconds(5f); // wait for 30 seconds
+        pot.sprite = data.Flower.flower;
+        data.State = 3;
+        data.potanddirt.sprite = data.potsell;
+
+    }
+
 
     public void GetWater() {
         isWatering = true;
