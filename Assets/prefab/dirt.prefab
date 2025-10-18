@@ -194,10 +194,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 0
   Flower: {fileID: 0}
+  thepot: {fileID: 0}
   Water: {fileID: 1471825373456064827}
   potsell: {fileID: 805638988, guid: 260d402584f02c5468dfd986aec1be74, type: 3}
   dirt: {fileID: -985105196, guid: d31fd4c4ba4b71b498e15fac36eb88b3, type: 3}
   potanddirt: {fileID: 4609613851408383644}
+  blank: {fileID: -674998633, guid: 6b343e63f93b4a54b8ae432d0fe2f263, type: 3}
 --- !u!1 &2588599889009272407
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -674998633, guid: 6b343e63f93b4a54b8ae432d0fe2f263, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
