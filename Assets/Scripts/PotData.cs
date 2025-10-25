@@ -13,6 +13,7 @@ public class PotData : MonoBehaviour
     public Sprite dirt;
     public Image potanddirt;
     public Sprite blank;
+    
     // Start is called before the first frame update
     void Start()
     {

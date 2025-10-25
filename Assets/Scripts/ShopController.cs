@@ -26,6 +26,9 @@ public class ShopController : MonoBehaviour
     public TextMeshProUGUI Fact;
     public GameObject popUp;
 
+    public float sproutTime;
+    public float potTime;
+
     private void Start()
     {
         PlayerMoney.text = "$" + money.ToString();
@@ -90,7 +93,16 @@ public class ShopController : MonoBehaviour
         if(data.State != 0 && isGetFact)
         {
             popUp.SetActive (true);
-            Fact.text = data.Flower.fact;
+            if (data.State == 1)
+            {
+
+                Fact.text = data.Flower.fact1;
+            }
+            if (data.State == 2 || data.State == 3)
+            {
+
+                Fact.text = data.Flower.fact2;
+            }
             isGetFact = false;
 
         }
@@ -132,18 +144,24 @@ public class ShopController : MonoBehaviour
 
     IEnumerator WaitAndSprout(PotData data)
     {
-        yield return new WaitForSeconds(2f); // wait for 10 seconds
-        data.thepot.sprite = data.Flower.sprout;
-        data.State = 2;
-        data.Water.enabled = true;
+
+            yield return new WaitForSeconds(data.Flower.sproutTime); // wait for 10 seconds
+        if (data.State == 1)
+        {
+            data.thepot.sprite = data.Flower.sprout;
+            data.State = 2;
+            data.Water.enabled = true;
+        }
     }
     IEnumerator WaitAndFlower(PotData data)
     {
-        yield return new WaitForSeconds(5f); // wait for 30 seconds
-        data.thepot.sprite = data.Flower.flower;
-        data.State = 3;
-        data.potanddirt.sprite = data.potsell;
-
+            yield return new WaitForSeconds(data.Flower.potTime); // wait for 30 seconds
+        if (data.State == 2)
+        {
+            data.thepot.sprite = data.Flower.flower;
+            data.State = 3;
+            data.potanddirt.sprite = data.potsell;
+        }
     }
 
 

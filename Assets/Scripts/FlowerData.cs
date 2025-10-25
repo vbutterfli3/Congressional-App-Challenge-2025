@@ -13,9 +13,13 @@ public class FlowerData : MonoBehaviour
     public Sprite seed;
     public Sprite sprout;
     public Sprite dead;
-    public string fact;
-   
-      
+    public string fact1;
+    public string fact2;
+    public string fact3;
+
+    public float sproutTime;
+    public float potTime;
+
 
     public FlowerData(FlowerData newFlower)
     {
